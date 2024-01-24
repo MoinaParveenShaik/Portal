@@ -10,7 +10,5 @@ public interface HumanResourceRepo extends ElasticsearchRepository<HumanResource
 	
 	HumanResource findByEmail(String email);
 
-	HumanResource findByPassword(String password);
-
 	HumanResource findByEmailAndPassword(String email, String password);
 }

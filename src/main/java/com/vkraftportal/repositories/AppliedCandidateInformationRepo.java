@@ -18,11 +18,7 @@ public interface AppliedCandidateInformationRepo extends ElasticsearchRepository
 	AppliedCandidateInformation findByEmail(String email);
 	
 	AppliedCandidateInformation findByJobIdAndRole(String jobId, String role);
-	
-	AppliedCandidateInformation findByJobId(String jobId);
 
 	List<AppliedCandidateInformation> countByStatus(String status);
-	
-//	long countByStatus(String status);
 
 }

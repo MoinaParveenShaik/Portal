@@ -354,9 +354,7 @@ public class Controller extends RouteBuilder {
 					exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE, 409);
 				} else {
 					String resumePath = appliedCandidateInfo.getResume();
-					String resumeBase64 = services.convertToBase64(resumePath);
 					appliedCandidateInfo.setStatus("applied");
-					appliedCandidateInfo.setResume(resumeBase64);
 					services.saveAppliedCandidateInfo(appliedCandidateInfo);
 					exchange.getMessage()
 							.setBody(appliedCandidateInfo.getFullName() + " succesfully applied for this position");

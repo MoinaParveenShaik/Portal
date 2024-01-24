@@ -138,11 +138,11 @@ public class Services {
 	public RegisterEmployee saveEmployee(RegisterEmployee employee) {
 		return employeeRepo.save(employee);
 	}
-	
+
 	public boolean employeeExists(RegisterEmployee employee) {
-	    RegisterEmployee existingEmployee = employeeRepo.findByEmployeeNumberOrEmail(
-	            employee.getEmployeeNumber(), employee.getEmail());
-	    return existingEmployee != null;
+		RegisterEmployee existingEmployee = employeeRepo.findByEmployeeNumberOrEmail(employee.getEmployeeNumber(),
+				employee.getEmail());
+		return existingEmployee != null;
 	}
 
 	public boolean validateEmployee(String username, String password) {
@@ -255,11 +255,6 @@ public class Services {
 		}
 	}
 
-	public String convertToBase64(String filePath) throws IOException {
-		byte[] fileContent = Files.readAllBytes(new File(filePath).toPath());
-		return Base64.getEncoder().encodeToString(fileContent);
-	}
-
 	public AppliedCandidateInformation findByEmail(String email) {
 		AppliedCandidateInformation candidateEmail = appliedCandidaterepo.findByEmail(email);
 		System.out.println(candidateEmail + "found");
@@ -307,19 +302,19 @@ public class Services {
 		appliedCandidaterepo.findByJobIdAndRole(jobId, role);
 		String subject = null;
 		if ("applied".equals(status)) {
-			subject = "Application Status - "  + role +"("+ jobId +")";
+			subject = "Application Status - " + role + "(" + jobId + ")";
 		}
 		if ("Screening".equals(status)) {
-			subject = "Update on Your Application - " + role +"("+ jobId +")";
+			subject = "Update on Your Application - " + role + "(" + jobId + ")";
 		}
 		if ("TechnicalRoundOne".equals(status)) {
-			subject = "Update on Your Application - " + role +"("+ jobId +")";
+			subject = "Update on Your Application - " + role + "(" + jobId + ")";
 		}
 		if ("TechnicalRoundTwo".equals(status)) {
-			subject = "Update on Your Application - " + role +"("+ jobId +")";
+			subject = "Update on Your Application - " + role + "(" + jobId + ")";
 		}
 		if ("HR".equals(status)) {
-			subject = "Update on Your Application - " + role +"("+ jobId +")";
+			subject = "Update on Your Application - " + role + "(" + jobId + ")";
 		}
 		return subject;
 	}
@@ -396,7 +391,7 @@ public class Services {
 		appliedCandidaterepo.findByJobIdAndRole(jobId, role);
 		String subject = null;
 		if ("applied".equals(status)) {
-			subject = "Application for " + role +"("+ jobId +")" + " is Received Successfully";
+			subject = "Application for " + role + "(" + jobId + ")" + " is Received Successfully";
 		}
 		if ("Screening".equals(status)) {
 			subject = "Congratulations!  You've passed the Screening Process";
@@ -516,41 +511,39 @@ public class Services {
 	}
 
 	public List<AppliedCandidateInformation> getCountOfSelectedCandidates() {
-//		long count = appliedCandidaterepo.countByStatus("applied");
 		String status = "applied";
-	    List<AppliedCandidateInformation> countByStatus = appliedCandidaterepo.countByStatus(status);
-//	    return appliedCandidaterepo.countByStatus("applied");
+		List<AppliedCandidateInformation> countByStatus = appliedCandidaterepo.countByStatus(status);
 		return countByStatus;
 	}
-	
+
 	public Long getCountOfAppliedCandidate() {
 		String status = "applied";
 		Iterable<AppliedCandidateInformation> candidates = appliedCandidaterepo.findByStatus(status);
 		long count = StreamSupport.stream(candidates.spliterator(), false).count();
 		return count;
 	}
- 
+
 	public Long getCountOfScreeningCandidate() {
 		String status = "Screening";
 		Iterable<AppliedCandidateInformation> candidates = appliedCandidaterepo.findByStatus(status);
 		long count = StreamSupport.stream(candidates.spliterator(), false).count();
 		return count;
 	}
- 
+
 	public Long getCountOfTechnicalRoundOne() {
 		String status = "TechnicalRoundOne";
 		Iterable<AppliedCandidateInformation> candidates = appliedCandidaterepo.findByStatus(status);
 		long count = StreamSupport.stream(candidates.spliterator(), false).count();
 		return count;
 	}
- 
+
 	public Long getCountOfTechnicalRoundTwo() {
 		String status = "TechnicalRoundTwo";
 		Iterable<AppliedCandidateInformation> candidates = appliedCandidaterepo.findByStatus(status);
 		long count = StreamSupport.stream(candidates.spliterator(), false).count();
 		return count;
 	}
- 
+
 	public Long getCountOfHRRound() {
 		String status = "HR";
 		Iterable<AppliedCandidateInformation> candidates = appliedCandidaterepo.findByStatus(status);
@@ -580,9 +573,4 @@ public class Services {
 		jobRepo.delete(findByJobId);
 		return true;
 	}
-	
-//	public CreateJob getJobByRole(String role) {
-//		CreateJob findByRole = jobRepo.findByRole(role);
-//		return findByRole;
-//	}
 }

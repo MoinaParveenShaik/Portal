@@ -8,6 +8,4 @@ public interface CreateJobRepo extends ElasticsearchRepository<CreateJob, Intege
 	
 	CreateJob findByJobId(String jobId);
 
-	CreateJob findByRole(String role);
-
 }
